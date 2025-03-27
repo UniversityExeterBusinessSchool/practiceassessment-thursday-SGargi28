@@ -1,10 +1,10 @@
 #######################################################################################################################################################
 # 
-# Name:
-# SID:
-# Exam Date:
-# Module:
-# Github link for this assignment:  
+# Name: Gargi Sarkar
+# SID: 740093121
+# Exam Date: 27/03/2025
+# Module: BEMM458
+# Github link for this assignment:  https://github.com/UniversityExeterBusinessSchool/practiceassessment-thursday-SGargi28.git
 #
 # ######################################################################################################################################################
 # Instruction 1. Read the questions and instructions carefully and complete scripts.
@@ -29,10 +29,9 @@
 # Create and populate a list called my_list with a tuple of (start location, end location) for each value in comments 
  
 
-customer_feedback = """Your recent order experience has been satisfactory overall. While there were some minor issues,
-we appreciate the effort made to resolve them promptly."
-"""
+customer_feedback = """Your recent order experience has been satisfactory overall. While there were some minor issues. we appreciate the effort made to resolve them promptly."""
 
+'''
 # List of words to search for
 key_comments = {
     0: 'satisfactory',
@@ -46,11 +45,29 @@ key_comments = {
     8: 'overall',
     9: 'minor'
 }
+'''
 
 # Write your search code here and provide comments. 
 
-# Initialize an empty list to store (start, end) positions
+#Initialize an empty list called my_list to store (start, end) positions of the words mentioned above
 my_list = []
+
+# serach function to find the words, first part of the line of code finds the occurance of the word and the seconf part finds the last occurance as we are calculating and adding the length of the word
+my_list = [
+    (customer_feedback.find('satisfactory'), customer_feedback.find('satisfactory') + len('satisfactory')),
+    (customer_feedback.find('order'), customer_feedback.find('order') + len('order')),
+    (customer_feedback.find('effort'), customer_feedback.find('effort') + len('effort')),
+    (customer_feedback.find('issues'), customer_feedback.find('issues') + len('issues')),
+    (customer_feedback.find('promptly'), customer_feedback.find('promptly') + len('promptly')),
+    (customer_feedback.find('appreciate'), customer_feedback.find('appreciate') + len('appreciate')),
+    (customer_feedback.find('experience'), customer_feedback.find('experience') + len('experience')),
+    (customer_feedback.find('resolve'), customer_feedback.find('resolve') + len('resolve')),
+    (customer_feedback.find('overall'), customer_feedback.find('overall') + len('overall')),
+    (customer_feedback.find('minor'), customer_feedback.find('minor') + len('minor'))
+]
+
+print("Positions of keywords:", my_list)
+# Answwer : Positions of keywords: [(38, 50), (12, 17), (114, 120), (88, 94), (142, 150), (99, 109), (18, 28), (129, 136), (51, 58), (82, 87)]
 
 ##########################################################################################################################################################
 
@@ -59,14 +76,51 @@ my_list = []
 # Operating Profit Margin, Revenue per Customer, Customer Churn Rate, and Average Order Value. Use Python functions 
 # that will take the values and return the metric needed. Use the first two and last two digits of your ID number as the input values.
 
-# Insert first two digits of ID number here:
-# Insert last two digits of ID number here:
+# Insert first two digits of ID number here: 74
+# Insert last two digits of ID number here: 21
 
 # Write your code for Operating Profit Margin
 
+#Formula to calculate Operating Profit Margin = (Operating Profit / Revenue) × 100
+#Initialising a function to calculate Operating Profit Margin based on the above formula. As we need two variables to calculate it, so I'm passing those two variables as arguments with the funtion and writing the formula within the block
+
+def op_margin(op,rev):
+    opm = ((op/rev)*100)
+    return opm #return the calculated value
+   
+#calling the function to calculate customer churn rate
+result1 = op_margin(21,74)
+print("Operating Profit Margin",result1)
+
+#result : Operating Profit Margin 28.37837837837838
+
 # Write your code for Revenue per Customer
 
+#Formula to calculate Revenue per Customer = Total Revenue / Total Number of Customers
+#Initialising a function to calculate Revenue per Customer based on the above formula. As we need two variables to calculate it, so I'm passing those two variables as arguments with the funtion and writing the formula within the block
+
+def rev_cust(trev,cust):
+    revnue = (trev/cust)
+    return revnue #return the calculated value
+   
+#calling the function to calculate customer churn rate
+result2 = rev_cust(74,21)
+print("Rev",result2)
+#Rev 3.5238095238095237
+
 # Write your code for Customer Churn Rate
+
+#Formula to calculate Customer Churn Rate = (Customers Lost During the Period / Total Customers at the Start of the Period) × 100
+#Initialising a function to calculate customer churn rate based on the above formula. As we need two variables to calculate it, so I'm passing those two variables as arguments with the funtion and writing the formula within the block
+
+def cc_rate(customerlost,totalcust):
+    cac = ((customerlost/totalcust)*100)
+    return cac #return the calculated value
+    
+#calling the function to calculate customer churn rate
+result3 = cc_rate(21,74)
+print("Customer Churn Rate",result3)
+#customer Churn Rate 28.37837837837838
 
 # Write your code for Average Order Value
 
@@ -97,6 +151,22 @@ Price (£)    Demand (Units)
 """
 
 # Write your code here
+prices = np.array([20,25,30,35,40,45,50,55,60,65,70]).reshape(-1, 1)
+demand = np.array([33,280,260,240,210,190,160,140,120,100,85])
+
+model = LinearRegression()
+model.fit(prices, demand)
+
+predicted_demand = model.predict(np.array([[52]]))
+print(f"Predicted demand at price £26: {predicted_demand[0]}")
+
+# Plotting the data points and regression line
+plt.scatter(prices, demand, color='blue')
+plt.plot(prices, model.predict(prices), color='red')
+plt.xlabel("Price (£)")
+plt.ylabel("Demand (Units)")
+plt.title("Price vs Demand")
+plt.show()
 
 ##########################################################################################################################################################
 
@@ -106,9 +176,9 @@ import random
 import matplotlib.pyplot as plt
 
 # Generate 100 random numbers between 1 and student id number
-max-value = integer(input("Enter your Student ID: "))
-random_numbers = [random.randint(1, max_value) for i in range(0,100)]
-
+#max-value = integer(input("Enter your Student ID: "))
+#random_numbers = [random.randint(1, max_value) for i in range(0,100)]
+'''
 # Plotting the numbers in a line chart
 plt.plot(random_numbers, marker='O', markercolor='green', markeredgcolor='red', linestyle='--', lable='Random Numbers', color='blue');
 plt.title(Line Chart of 100 Random Numbers)
@@ -117,6 +187,5 @@ plt.ylabel="Random Number"
 plt.legend('---')
 plt.grid(True)
 plt.show()
-
-
+'''
 
